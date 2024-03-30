@@ -114,6 +114,28 @@
         button:hover {
             background-color: #0056b3;
         }
+
+        /* Verberg het popupvenster standaard */
+        #registerPopup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 9999; /* Zorg ervoor dat het bovenop andere elementen staat */
+        }
+
+        /* Stijl voor het sluiten van het popupvenster */
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -136,11 +158,14 @@
     </div>
     <footer>
         <h4>purnecol &copy; &reg;</h4>
-        <a href="#" id="registerLink">Registreer hier</a>
+        <!-- Voeg een span toe om het popupvenster te openen -->
+        <span id="registerLink">Registreer hier</span>
     </footer>
 
     <!-- Popupvenster voor registratie -->
-    <div id="registerPopup" style="display: none;">
+    <div id="registerPopup">
+        <!-- Voeg een knop toe om het popupvenster te sluiten -->
+        <span class="close" onclick="closePopup()">X</span>
         <form id="registerForm">
             <h2>Register</h2>
             <input type="text" id="registerUsername" placeholder="Username" required>
@@ -154,27 +179,15 @@
         const registerLink = document.getElementById('registerLink');
         const registerPopup = document.getElementById('registerPopup');
 
-        registerLink.addEventListener('click', function(event) {
-            event.preventDefault(); // Voorkom dat de link het pagina-adres wijzigt
+        registerLink.addEventListener('click', function() {
             registerPopup.style.display = 'block'; // Toon het popupvenster
         });
 
-        // JavaScript om het formulier in te dienen en te registreren
-        const registerForm = document.getElementById('registerForm');
-
-        registerForm.addEventListener('submit', function(event) {
-            event.preventDefault(); // Voorkom standaardgedrag van het formulier
-
-            // Voer hier de logica uit om de gebruiker te registreren
-            const registerUsername = document.getElementById('registerUsername').value;
-            const registerPassword = document.getElementById('registerPassword').value;
-
-            // Stuur de gegevens naar de server of voer een andere actie uit
-            console.log('Registratiegegevens:', registerUsername, registerPassword);
-            
-            // Optioneel: sluit het popupvenster na registratie
-            registerPopup.style.display = 'none';
-        });
+        // JavaScript om het popupvenster te sluiten
+        function closePopup() {
+            registerPopup.style.display = 'none'; // Verberg het popupvenster
+        }
     </script>
 </body>
 </html>
+
