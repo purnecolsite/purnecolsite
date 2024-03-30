@@ -186,7 +186,28 @@
         function closePopup() {
             registerPopup.style.display = 'none'; // Verberg het popupvenster
         }
+
+        // JavaScript voor inloggen
+        const loginForm = document.getElementById('loginForm');
+        const logoutForm = document.getElementById('logoutForm');
+        const usernameDisplay = document.getElementById('usernameDisplay');
+
+        loginForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('loginUsername').value;
+            // Simpel inlogmechanisme: alleen gebruikersnaam weergeven
+            usernameDisplay.textContent = username;
+            // Toon het uitlogformulier en verberg het inlogformulier
+            logoutForm.style.display = 'block';
+            loginForm.style.display = 'none';
+        });
+
+        // JavaScript voor uitloggen
+        function logout() {
+            // Verberg het uitlogformulier en toon het inlogformulier
+            logoutForm.style.display = 'none';
+            loginForm.style.display = 'block';
+        }
     </script>
 </body>
 </html>
-
