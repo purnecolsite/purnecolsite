@@ -133,16 +133,48 @@
             <input type="password" id="loginPassword" placeholder="Password" required>
             <button type="submit">Login</button>
         </form>
-        <form id="registerForm" style="display: none;">
+    </div>
+    <footer>
+        <h4>purnecol &copy; &reg;</h4>
+        <a href="#" id="registerLink">Registreer hier</a>
+    </footer>
+
+    <!-- Popupvenster voor registratie -->
+    <div id="registerPopup" style="display: none;">
+        <form id="registerForm">
             <h2>Register</h2>
             <input type="text" id="registerUsername" placeholder="Username" required>
             <input type="password" id="registerPassword" placeholder="Password" required>
             <button type="submit">Register</button>
         </form>
     </div>
-    <footer>
-        <h4>purnecol &copy; &reg;</h4>
-    </footer>
+
+    <script>
+        // JavaScript om het popupvenster weer te geven wanneer op de link wordt geklikt
+        const registerLink = document.getElementById('registerLink');
+        const registerPopup = document.getElementById('registerPopup');
+
+        registerLink.addEventListener('click', function(event) {
+            event.preventDefault(); // Voorkom dat de link het pagina-adres wijzigt
+            registerPopup.style.display = 'block'; // Toon het popupvenster
+        });
+
+        // JavaScript om het formulier in te dienen en te registreren
+        const registerForm = document.getElementById('registerForm');
+
+        registerForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Voorkom standaardgedrag van het formulier
+
+            // Voer hier de logica uit om de gebruiker te registreren
+            const registerUsername = document.getElementById('registerUsername').value;
+            const registerPassword = document.getElementById('registerPassword').value;
+
+            // Stuur de gegevens naar de server of voer een andere actie uit
+            console.log('Registratiegegevens:', registerUsername, registerPassword);
+            
+            // Optioneel: sluit het popupvenster na registratie
+            registerPopup.style.display = 'none';
+        });
+    </script>
 </body>
 </html>
-
